@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700&display=swap");
-
 :root {
   --bg-clr: #102432;
   --bg-light-color: #152f40;
@@ -21,20 +20,17 @@ body {
   font-weight: 400;
   font-family: Poppins;
 }
-
 *,
 *::after,
 *::before {
   box-sizing: border-box;
 }
-
 a,
 a:focus,
 a:target {
   color: inherit;
   text-decoration: none;
 }
-
 ul,
 li {
   margin: 0;
@@ -102,7 +98,6 @@ nav {
   transition: all 0.35s ease-in-out;
   z-index: 100;
 }
-
 .site-nav li a {
   padding: 0.5em 0;
   display: block;
@@ -195,7 +190,6 @@ section {
   font-weight: 700;
   margin-bottom: 1.5em;
 }
-
 .section-title::before {
   content: "/";
   color: var(--accent-clr);
@@ -294,7 +288,6 @@ section {
   font-size: 1.5em;
   font-weight: 600;
 }
-
 .job-title span {
   color: var(--accent-clr);
 }
@@ -377,38 +370,8 @@ section {
   background: var(--bg-clr);
 }
 
-footer {
-  background: #0d1d28;
-  text-align: center;
-  padding: 30px 20px;
-}
-
-.social-icons {
-  margin-bottom: 20px;
-}
-
-.social-icons a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  margin: 0 10px;
-  font-size: 24px;
-  color: white;
-  background: #111;
-  border-radius: 8px;
-  transition: 0.3s;
-}
-
-.social-icons a:hover {
-  background: #555;
-  transform: translateY(-3px);
-}
-
-.copyright {
-  font-size: 14px;
-  color: #ffffff;
+footer p {
+  font-size: 0.8em;
 }
 
 /* RESPONSIVE DESIGN */
@@ -423,11 +386,9 @@ footer {
   .work-section {
     grid-template-columns: 1fr 1fr 1fr;
   }
-
   .toggle {
     display: none;
   }
-
   nav {
     position: relative;
     background: unset;
@@ -449,7 +410,7 @@ footer {
     opacity: 1;
     color: yellow;
     cursor: help;
-
+    
   }
 
   .btn {
@@ -457,7 +418,6 @@ footer {
     border: 1px solid var(--accent-clr);
     border-radius: 5px;
   }
-
   .btn:hover {
     background: var(--accent-clr);
     color: var(--bg-clr);
@@ -489,7 +449,6 @@ footer {
   .hero-title {
     font-size: 5em;
   }
-
   .hero-subtitle {
     font-size: 3em;
   }
