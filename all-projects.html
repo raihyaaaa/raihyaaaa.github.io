@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Projects | Raily Almeron</title>
+    <link rel="icon" href="Assets/sasuke.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="all-projects.css">
+</head>
+
+<body>
+
+    <!-- Navigation - Floating Pill Style -->
+    <nav id="mainNav">
+        <div class="nav-pill">
+            <div class="nav-logo">
+                <img src="Assets/LOGO.png" alt="Raily Almeron portfolio logo" class="nav-logo-img">
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#tech" class="nav-link">Skills</a></li>
+                <li><a href="index.html#experience" class="nav-link">Experience</a></li>
+                <li><a href="index.html#projects" class="nav-link active">Projects</a></li>
+                <li><a href="index.html#testimonials" class="nav-link">Testimonials</a></li>
+                <li><a href="index.html#contact" class="nav-link contact-btn">Contact</a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- All Projects Section -->
+    <section class="all-projects-section">
+        <div class="all-projects-container">
+
+            <!-- Section Header -->
+            <div class="all-projects-header">
+                <h1 class="all-projects-title">Projects</h1>
+
+                <!-- Filter Tabs -->
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="all">
+                        All <span class="filter-count">4</span>
+                    </button>
+                    <button class="filter-tab" data-filter="website">
+                        Website <span class="filter-count">3</span>
+                    </button>
+                    <button class="filter-tab" data-filter="mobile">
+                        Mobile <span class="filter-count">2</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="all-projects-grid">
+
+                <!-- Project Card 1 -->
+                <a href="cvcraft.html" class="all-project-card" data-category="website">
+                    <div class="all-project-image">
+                        <img src="Assets/cvcraftlandingpage.png" alt="CV Crafted">
+                    </div>
+                    <div class="all-project-content">
+                        <h3>CV Crafted</h3>
+                        <p>resume builder designed to help job seekers create professional.</p>
+                    </div>
+                </a>
+
+                <!-- Project Card 2 -->
+                <a href="pubspeaker.html" class="all-project-card" data-category="mobile">
+                    <div class="all-project-image">
+                        <img src="Assets/pubspeaker.png" alt="PubSpeaker">
+                    </div>
+                    <div class="all-project-content">
+                        <h3>PubSpeaker</h3>
+                        <p>is a speech analysis and feedback application designed to help users improve their public
+                            speaking and pronunciation skills.</p>
+                    </div>
+                </a>
+
+                <!-- Project Card 3 -->
+                <a href="#" class="all-project-card" data-category="website">
+                    <div class="all-project-image">
+                        <img src="Assets/edulink.png" alt="EduLink">
+                    </div>
+                    <div class="all-project-content">
+                        <h3>EduLink</h3>
+                        <p>a responsive LMS platform for educators and students. Supports course creation, video
+                            lectures, quizzes, progress tracking, and collaborative discussion forums.</p>
+                    </div>
+                </a>
+
+                <!-- Project Card 4 - NOW IN BOTH WEBSITE AND MOBILE -->
+                <a href="xomayhem.html" class="all-project-card" data-category="website,mobile">
+                    <div class="all-project-image">
+                        <img src="Assets/mayhem.png" alt="XO Mayhem">
+                    </div>
+                    <div class="all-project-content">
+                        <h3>XO Mayhem</h3>
+                        <p>is a responsive website for fast-paced, competitive tic-tac-toe battles where every move decides victory
+                            or defeat.</p>
+                    </div>
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" data-scroll-section>
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-info">
+                    <h3>Let's Work Together</h3>
+                    <p>Have a project in mind? I'd love to hear about it and discuss how we can collaborate to create
+                        something amazing.</p>
+                    <div class="footer-links">
+                        <a href="https://www.linkedin.com/in/raihyaaa/" target="_blank" class="footer-link"
+                            title="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://www.facebook.com/fvckfb2022" target="_blank" class="footer-link"
+                            title="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://www.instagram.com/raihyaaa_/" target="_blank" class="footer-link"
+                            title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://github.com/raihyaaaa" target="_blank" class="footer-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" placeholder="Your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" placeholder="Your message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Raily Almeron. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script src="all-projects.js"></script>
+</body>
+
+</html>

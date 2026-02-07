@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="icon" href="Assets/sasuke.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .hamburger span {
+            background: var(--text-color);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        @media (max-width: 968px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 280px;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 6rem 2rem 2rem;
+                gap: 0.5rem;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1000;
+            }
+
+            [data-theme="dark"] .nav-links {
+                background: rgba(26, 31, 53, 0.98);
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-link {
+                width: 100%;
+                justify-content: flex-start;
+                padding: 1rem 1.5rem;
+                border-radius: 12px;
+            }
+
+            .nav-pill {
+                padding: 0.7rem 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <script id="chatway" async="true" src="https://cdn.chatway.app/widget.js?id=SvTxIFgdrwDe"></script>
+
+    <!-- AI Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="ai-loader">
+            <div class="ai-core">
+                <div class="orbit-ring ring-1"></div>
+                <div class="orbit-ring ring-2"></div>
+                <div class="orbit-ring ring-3"></div>
+                <div class="ai-center">
+                    <div class="ai-dot"></div>
+                </div>
+                <div class="data-stream stream-1"></div>
+                <div class="data-stream stream-2"></div>
+                <div class="data-stream stream-3"></div>
+                <div class="data-stream stream-4"></div>
+            </div>
+        </div>
+        <div class="loading-progress" id="loadingProgress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <span class="progress-text" id="progressText">0%</span>
+        </div>
+        <div class="loading-status" id="loadingStatus">Initializing AI Systems...</div>
+    </div>
+
+    <!-- Navigation - Floating Pill Style -->
+    <nav id="mainNav">
+        <div class="nav-pill">
+            <div class="nav-logo">
+                <img src="Assets/LOGO.png" alt="Raily Almeron portfolio logo" class="nav-logo-img">
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#tech" class="nav-link">Skills</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                <li><a href="#contact" class="nav-link contact-btn active">Contact</a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home" data-scroll-section>
+        <div class="hero-container" data-scroll data-scroll-speed="0.5">
+            <div class="hero-content">
+                <div class="availability-badge">
+                    <span class="availability-dot"></span>
+                    Available for new projects
+                </div>
+                <h1>Thoughtful Design.<span class="highlight"> Meaningful Experiences.</span></h1>
+                <p class="hero-subtitle">Transforming ideas into beautiful, user-centered digital experiences through
+                    innovative design thinking and strategic problem-solving.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary">
+                        <i class="fas fa-envelope"></i>
+                        Contact Me
+                    </a>
+                    <a href="Assets/ALMERON_Resume.docx.pdf" download class="btn-secondary">
+                        <i class="fas fa-download"></i>
+                        Download Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about fade-in" id="about" data-scroll-section>
+        <div class="ai-background-effect">
+            <canvas id="aboutCanvas"></canvas>
+        </div>
+        <div class="section-header" data-scroll data-scroll-speed="0.3">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">Passionate designer crafting meaningful digital experiences</p>
+        </div>
+        <div class="about-content">
+            <div class="about-image-wrapper" data-scroll data-scroll-speed="0.7">
+                <img src="Assets/me.jpg" alt="Profile" class="about-profile-img">
+                <div class="image-ai-overlay"></div>
+            </div>
+            <div class="about-text" data-scroll data-scroll-speed="0.5">
+                <h3>Designing with Purpose & Passion</h3>
+                <p>Hello! I'm Raily Almeron, a UI/UX Designer specializing in designing websites and mobile applications
+                    that not only look stunning but also deliver exceptional user experiences. My approach combines
+                    creative vision with user-centered design principles to solve real-world problems.</p>
+                <p>With a keen eye for detail and a passion for creating intuitive interfaces, I transform complex ideas
+                    into simple, elegant solutions. I believe that great design is invisible—it just works seamlessly,
+                    making users' lives easier and more enjoyable.</p>
+                <p>When I'm not designing, I'm constantly exploring the latest design trends, experimenting with new
+                    tools, and finding inspiration in everyday interactions. Let's create something amazing together!
+                </p>
+
+                <div class="about-contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>yliarnoremla@gmail.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Quezon City, Metro Manila, Philippines</span>
+                    </div>
+                </div>
+
+                <div class="about-stats">
+                    <div class="stat-box">
+                        <div class="stat-number" data-target="15">0</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" data-target="10">0</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" data-target="500">0</div>
+                        <div class="stat-label">Design Hours</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" data-target="∞">0</div>
+                        <div class="stat-label">Coffee Consumed</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="tech-stack fade-in" id="tech" data-scroll-section>
+        <div class="binary-rain" id="binaryRain"></div>
+        <div class="section-header" data-scroll data-scroll-speed="0.3">
+            <h2 class="section-title">Skills & Tools</h2>
+            <p class="section-subtitle">The powerful toolkit I use to bring ideas to life</p>
+        </div>
+        <div class="tech-grid">
+            <div class="tech-card" data-scroll data-scroll-speed="0.4">
+                <div class="tech-icon-img">
+                    <img src="Assets/figma.png" alt="Figma">
+                </div>
+                <h3>Figma</h3>
+                <p class="tech-description">Design Tool</p>
+            </div>
+
+            <div class="tech-card" data-scroll data-scroll-speed="0.5">
+                <div class="tech-icon-img">
+                    <img src="Assets/photoshop.png" alt="Adobe Photoshop">
+                </div>
+                <h3>Adobe Photoshop</h3>
+                <p class="tech-description">Design Tool</p>
+            </div>
+
+            <div class="tech-card" data-scroll data-scroll-speed="0.6">
+                <div class="tech-icon-img">
+                    <img src="Assets/wix.png" alt="Wix">
+                </div>
+                <h3>Wix</h3>
+                <p class="tech-description">Web Builder</p>
+            </div>
+
+            <div class="tech-card" data-scroll data-scroll-speed="0.4">
+                <div class="tech-icon-img">
+                    <img src="Assets/canva.png " alt="Canva">
+                </div>
+                <h3>Canva</h3>
+                <p class="tech-description">Design Tool</p>
+            </div>
+
+            <div class="tech-card" data-scroll data-scroll-speed="0.5">
+                <div class="tech-icon-img">
+                    <img src="Assets/reactnative.png" alt="React Native">
+                </div>
+                <h3>React Native</h3>
+                <p class="tech-description">Development</p>
+            </div>
+
+            <div class="tech-card" data-scroll data-scroll-speed="0.6">
+                <div class="tech-icon-img">
+                    <img src="Assets/css.png" alt="CSS">
+                </div>
+                <h3>CSS</h3>
+                <p class="tech-description">Development</p>
+            </div>
+
+            <div class="tech-card" data-scroll data-scroll-speed="0.4">
+                <div class="tech-icon-img">
+                    <img src="Assets/userresearch.png" alt="User Research">
+                </div>
+                <h3>User Research</h3>
+                <p class="tech-description">Skill</p>
+            </div>
+
+            <div class="tech-card" data-scroll data-scroll-speed="0.5">
+                <div class="tech-icon-img">
+                    <img src="Assets/prototyping1.png" alt="Prototyping">
+                </div>
+                <h3>Prototyping</h3>
+                <p class="tech-description">Skill</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section – Vertical Timeline -->
+    <section class="experience fade-in" id="experience" data-scroll-section>
+        <div class="timeline-particles" id="timelineParticles"></div>
+        <div class="section-header" data-scroll data-scroll-speed="0.3">
+            <h2 class="section-title">Professional Experience</h2>
+            <p class="section-subtitle">My Path as a Designer</p>
+        </div>
+
+        <div class="timeline">
+
+            <!-- Entry 1 (odd = card on RIGHT, date on LEFT) -->
+            <div class="timeline-item">
+                <div class="timeline-date-badge">August 2025 – Present</div>
+                <div class="timeline-dot"><i class="fas fa-briefcase dot-icon"></i></div>
+                <div class="timeline-card-wrap">
+                    <div class="timeline-card">
+                        <div class="tc-header">
+                            <div class="tc-logo-box"><i class="fas fa-briefcase"></i></div>
+                            <div class="tc-title">
+                                <h3>UI/UX Designer</h3>
+                                <span class="tc-company">PRIME Philippines</span>
+                            </div>
+                        </div>
+                        <ul class="tc-bullets">
+                            <li>Leading design initiatives for web and mobile applications</li>
+                            <li>Conducting user research and usability testing to inform design decisions</li>
+                            <li>Creating wireframes, prototypes, and high-fidelity mockups</li>
+                            <li>Collaborating with cross-functional teams to deliver user-centered solutions</li>
+                        </ul>
+                        <div class="tc-tags">
+                            <span class="tc-tag">Figma</span>
+                            <span class="tc-tag">Photoshop</span>
+                            <span class="tc-tag">Wix</span>
+                            <span class="tc-tag">React</span>
+                            <span class="tc-tag">CSS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Entry 2 (even = card on LEFT, date on LEFT) – Starbucks -->
+            <div class="timeline-item">
+                <div class="timeline-date-badge">March 2020 – April 2021</div>
+                <div class="timeline-dot"><i class="fas fa-mug-hot dot-icon dot-icon-green"></i></div>
+                <div class="timeline-card-wrap">
+                    <div class="timeline-card">
+                        <div class="tc-header">
+                            <div class="tc-logo-box tc-logo-green"><i class="fas fa-code"></i></div>
+                            <div class="tc-title">
+                                <h3>React.js Developer</h3>
+                                <span class="tc-company">Starbucks</span>
+                            </div>
+                        </div>
+                        <ul class="tc-bullets">
+                            <li>Developing and maintaining web applications using React.js and other related
+                                technologies</li>
+                            <li>Collaborating with cross-functional teams including designers, product managers, and
+                                other developers to create high-quality products</li>
+                            <li>Implementing responsive design and ensuring cross-browser compatibility</li>
+                            <li>Participating in code reviews and providing constructive feedback to other developers
+                            </li>
+                        </ul>
+                        <div class="tc-tags">
+                            <span class="tc-tag">React.js</span>
+                            <span class="tc-tag">JavaScript</span>
+                            <span class="tc-tag">CSS</span>
+                            <span class="tc-tag">Node.js</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Entry 3 (odd = card on RIGHT, date on LEFT) – Tesla -->
+            <div class="timeline-item">
+                <div class="timeline-date-badge">Jan 2021 – Feb 2022</div>
+                <div class="timeline-dot"><i class="fas fa-bolt dot-icon dot-icon-red"></i></div>
+                <div class="timeline-card-wrap">
+                    <div class="timeline-card">
+                        <div class="tc-header">
+                            <div class="tc-logo-box tc-logo-red"><i class="fas fa-bolt"></i></div>
+                            <div class="tc-title">
+                                <h3>React Native Developer</h3>
+                                <span class="tc-company">Tesla</span>
+                            </div>
+                        </div>
+                        <ul class="tc-bullets">
+                            <li>Developing and maintaining web applications using React.js and other related
+                                technologies</li>
+                            <li>Collaborating with cross-functional teams including designers, product managers, and
+                                other developers to create high-quality products</li>
+                            <li>Implementing responsive design and ensuring cross-browser compatibility</li>
+                            <li>Participating in code reviews and providing constructive feedback</li>
+                        </ul>
+                        <div class="tc-tags">
+                            <span class="tc-tag">React</span>
+                            <span class="tc-tag">JavaScript</span>
+                            <span class="tc-tag">TypeScript</span>
+                            <span class="tc-tag">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services fade-in" id="services" data-scroll-section>
+        <div class="section-header" data-scroll data-scroll-speed="0.3">
+            <h2 class="section-title">What I Can Offer</h2>
+            <p class="section-subtitle">Comprehensive UI/UX design services tailored to your needs</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card" data-scroll data-scroll-speed="0.4">
+                <div class="service-icon">
+                    <img src="Assets/wireframe.png" alt="Wireframing">
+                </div>
+                <h3>Wireframing</h3>
+                <p>Creating low and high-fidelity wireframes to visualize structure and user flow before diving into
+                    visual design.</p>
+            </div>
+            <div class="service-card" data-scroll data-scroll-speed="0.5">
+                <div class="service-icon">
+                    <img src="Assets/prototyping.png" alt="Prototyping">
+                </div>
+                <h3>Prototyping</h3>
+                <p>Building interactive prototypes that bring your ideas to life and allow for user testing and
+                    validation.</p>
+            </div>
+            <div class="service-card" data-scroll data-scroll-speed="0.6">
+                <div class="service-icon">
+                    <img src="Assets/visual.png" alt="Visual Design">
+                </div>
+                <h3>Visual Design</h3>
+                <p>Crafting beautiful, modern interfaces with attention to typography, color, spacing, and overall
+                    aesthetic appeal.</p>
+            </div>
+            <div class="service-card" data-scroll data-scroll-speed="0.5">
+                <div class="service-icon">
+                    <img src="Assets/design.png" alt="Design System">
+                </div>
+                <h3>Design System Creation</h3>
+                <p>Building scalable design systems with reusable components, patterns, and guidelines for consistency.
+                </p>
+            </div>
+            <div class="service-card" data-scroll data-scroll-speed="0.6">
+                <div class="service-icon">
+                    <img src="Assets/audit.png" alt="UI/UX Audit">
+                </div>
+                <h3>UI/UX Audit</h3>
+                <p>Evaluating existing interfaces to identify usability issues and provide actionable recommendations.
+                </p>
+            </div>
+            <div class="service-card" data-scroll data-scroll-speed="0.4">
+                <div class="service-icon">
+                    <img src="Assets/responsive.png" alt="Responsive Design">
+                </div>
+                <h3>Responsive Design</h3>
+                <p>Ensuring seamless experiences across all devices with mobile-first design approaches.</p>
+            </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects fade-in" id="projects" data-scroll-section>
+        <div class="section-header" data-scroll data-scroll-speed="0.3">
+            <div class="projects-header-content">
+                <div>
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">Showcasing my latest work</p>
+                </div>
+            </div>
+        </div>
+        <div class="projects-grid-cards">
+
+            <!-- Project 1 – CV Crafted -->
+            <a href="cvcraft.html" class="project-card-small" data-scroll data-scroll-speed="0.4">
+                <div class="project-image-container">
+                    <img src="Assets/cvcraftlandingpage.png" alt="CV Crafted" class="project-image">
+                    <div class="project-gh-badge"><i class="fab fa-github"></i></div>
+                    <div class="project-image-overlay">
+                        <div class="project-external-link">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content-small">
+                    <h3>CV Crafted</h3>
+                    <p>is a resume builder designed to help job seekers create professional, ATS-friendly resumes
+                        in minutes. With customizable templates and an easy-to-use interface, CV Crafted makes it simple
+                        to showcase your skills, experience, and achievements.</p>
+                    <div class="project-footer">
+                        <div class="fp-tags">
+                            <span class="fp-tag">React.js</span>
+                            <span class="fp-tag">Redux</span>
+                            <span class="fp-tag">Tailwind CSS</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Project 2 – PubSpeaker -->
+            <a href="pubspeaker.html" class="project-card-small" data-scroll data-scroll-speed="0.6">
+                <div class="project-image-container">
+                    <img src="Assets/pubspeaker.png" alt="PubSpeaker" class="project-image">
+                    <div class="project-gh-badge"><i class="fab fa-github"></i></div>
+                    <div class="project-image-overlay">
+                        <div class="project-external-link">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content-small">
+                    <h3>PubSpeaker</h3>
+                    <p>An AI-driven mobile app that transcribes speech in real-time, generates concise summaries, and
+                        provides personalized feedback on pronunciation and grammar. Users can review session history
+                        and track progress to enhance communication skills.</p>
+                    <div class="project-footer">
+                        <div class="fp-tags">
+                            <span class="tc-tag">React Native</span>
+                            <span class="fp-tag">SQLite</span>
+                            <span class="fp-tag">Tailwind CSS</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Project 3 – XO Mayhem -->
+            <a href="xomayhem.html" class="project-card-small" data-scroll data-scroll-speed="0.5">
+                <div class="project-image-container">
+                    <img src="Assets/mayhem.png" alt="XO Mayhem" class="project-image">
+                    <div class="project-gh-badge"><i class="fab fa-github"></i></div>
+                    <div class="project-image-overlay">
+                        <div class="project-external-link">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content-small">
+                    <h3>XO Mayhem</h3>
+                    <p>a responsive mobile application and website-based tic-tac-toe game that enhances the classic experience by introducing an extended
+                        5x5 and 7×7 grid and an AI opponent with multiple difficulty levels. </p>
+                    <div class="project-footer">
+                        <div class="fp-tags">
+                            <span class="fp-tag">HTML</span>
+                            <span class="fp-tag">CSS</span>
+                            <span class="fp-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- View All Projects Button -->
+        <div class="view-all-projects-wrapper">
+            <a href="all-projects.html" class="btn-view-all-projects">
+                <i class="fas fa-grid"></i>
+                View All Projects
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials fade-in" id="testimonials" data-scroll-section>
+        <div class="section-header" data-scroll data-scroll-speed="0.3">
+            <h2 class="section-title">Client Testimonials</h2>
+            <p class="section-subtitle">What people say about working with me</p>
+        </div>
+
+        <div class="testimonial-carousel">
+            <div class="testimonial-track" id="testimonialTrack">
+
+                <!-- Testimonial 1 -->
+                <div class="testimonial-slide active">
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Raily's design work exceeded all our expectations. The UI/UX he created for our mobile app
+                            was not only beautiful but incredibly intuitive. Our user engagement increased by 40% after
+                            the redesign!"
+                        </p>
+                        <div class="testimonial-author">
+                            <img src="Assets/sarah.png" alt="Sarah Chen" class="author-image">
+                            <div class="author-info">
+                                <h4>Sarah Chen</h4>
+                                <p>CEO, TechStart Inc.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Working with Raily was an absolute pleasure. His attention to detail and ability to
+                            understand our brand vision was remarkable. He delivered a design system that has
+                            streamlined our entire product development process."
+                        </p>
+                        <div class="testimonial-author">
+                            <img src="Assets/michael.png" alt="Michael Rodriguez" class="author-image">
+                            <div class="author-info">
+                                <h4>Michael Rodriguez</h4>
+                                <p>Product Manager, Innovate Labs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Raily transformed our outdated website into a modern, user-friendly platform. Her
+                            research-driven approach ensured every design decision was backed by data. Highly
+                            recommended for any serious UI/UX project!"
+                        </p>
+                        <div class="testimonial-author">
+                            <img src="Assets/emily.png" alt="Emily Watson" class="author-image">
+                            <div class="author-info">
+                                <h4>Emily Watson</h4>
+                                <p>Marketing Director, Digital Solutions Co.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="testimonial-slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "The wireframes and prototypes Raily created helped us secure funding from investors. His
+                            ability to translate complex ideas into clean, accessible designs is truly impressive. A
+                            top-tier designer!"
+                        </p>
+                        <div class="testimonial-author">
+                            <img src="Assets/james.png" alt="James Park" class="author-image">
+                            <div class="author-info">
+                                <h4>James Park</h4>
+                                <p>Founder, HealthTech Startup</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 5 -->
+                <div class="testimonial-slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Raily's expertise in both design and user psychology made our collaboration incredibly
+                            valuable. He didn't just make things look good—she made them work better. Our conversion
+                            rates speak for themselves!"
+                        </p>
+                        <div class="testimonial-author">
+                            <img src="Assets/amanda.png" alt="Amanda Foster" class="author-image">
+                            <div class="author-info">
+                                <h4>Amanda Foster</h4>
+                                <p>Head of UX, E-commerce Platform</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Carousel Navigation -->
+            <div class="carousel-nav">
+                <button class="carousel-btn" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="carousel-dots" id="carouselDots">
+                    <span class="carousel-dot active" data-slide="0"></span>
+                    <span class="carousel-dot" data-slide="1"></span>
+                    <span class="carousel-dot" data-slide="2"></span>
+                    <span class="carousel-dot" data-slide="3"></span>
+                    <span class="carousel-dot" data-slide="4"></span>
+                </div>
+                <button class="carousel-btn" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" data-scroll-section>
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-info">
+                    <h3>Let's Work Together</h3>
+                    <p>Have a project in mind? I'd love to hear about it and discuss how we can collaborate to create
+                        something amazing.</p>
+                    <div class="footer-links">
+                        <a href="https://www.linkedin.com/in/raihyaaa/" target="_blank" class="footer-link"
+                            title="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://www.facebook.com/fvckfb2022" target="_blank" class="footer-link"
+                            title="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://www.instagram.com/raihyaaa_/" target="_blank" class="footer-link"
+                            title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://github.com/raihyaaaa" target="_blank" class="footer-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" placeholder="Your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" placeholder="Your message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Raily Almeron. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
